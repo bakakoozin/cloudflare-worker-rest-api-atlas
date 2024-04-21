@@ -1,0 +1,11 @@
+name = "mongo-realm-worker"
+main = "src/index.ts"
+compatibility_date = "2024-03-29"
+compatibility_flags = ["nodejs_compat"]
+
+account_id = "7d3d8945b43413baa391ce4422e5a1e7"
+workers_dev = true # or zone_id = "<ZONE ID>" if you have one
+
+[vars]
+ATLAS_APPID = "application-0-evddemn"
+
