@@ -34,8 +34,8 @@ const worker: ExportedHandler<Bindings> = {
             return utils.toError(`Unknown '${path}' URL; try '/api/todos' instead.`, 404);
         }
 
-        const token = req.headers.get('authorization');
-        if (!token) return utils.toError(`Missing 'authorization' header; try to add the header 'authorization: ATLAS_APP_API_KEY'.`, 401);
+        const token = env.ATLAS_TOKEN;
+    console.log(token)
 
         try {
             const credentials = Realm.Credentials.apiKey(token);

@@ -6,6 +6,7 @@ const ObjectId = Realm.BSON.ObjectID;
 const worker = {
     async fetch(req, env) {
         const url = new URL(req.url);
+        console.log(env.ATLAS_APPID)
         App = App || new Realm.App(env.ATLAS_APPID);
         const method = req.method;
         const path = url.pathname.replace(/[/]$/, '');
