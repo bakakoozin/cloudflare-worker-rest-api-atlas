@@ -5,6 +5,7 @@ import * as utils from './utils';
 interface Bindings {
     // MongoDB Atlas Application ID
     ATLAS_APPID: string;
+    ATLAS_TOKEN: string
 }
 
 // Define type alias; available via `realm-web`
@@ -33,15 +34,15 @@ const worker: ExportedHandler<Bindings> = {
         if (path !== '/api/todos') {
             return utils.toError(`Unknown '${path}' URL; try '/api/todos' instead.`, 404);
         }
-
+    
         const token = env.ATLAS_TOKEN;
-    console.log(token)
-
+        console.log(token)
+        let client
         try {
             const credentials = Realm.Credentials.apiKey(token);
             // Attempt to authenticate
-            var user = await App.logIn(credentials);
-            var client = user.mongoClient('mongodb-atlas');
+            const user = await App.logIn(credentials);
+            client = user.mongoClient('mongodb-atlas');
         } catch (err) {
             return utils.toError('Error with authentication.', 500);
         }
@@ -68,10 +69,10 @@ const worker: ExportedHandler<Bindings> = {
 
             // POST /api/todos
             if (method === 'POST') {
-                const {todo} = await req.json();
+                const { todo } = await req.json();
                 return utils.reply(
                     await collection.insertOne({
-                        owner_id: user.id,
+                        owner_id: '',
                         done: false,
                         todo: todo,
                     })
