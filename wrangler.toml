@@ -8,4 +8,4 @@ workers_dev = true # or zone_id = "<ZONE ID>" if you have one
 
 [vars]
 ATLAS_APPID = "application-0-evddemn"
-ATLAS_TOKEN = "ZDvF79yFwX4hO2DLOJmwi8JML3Uf5R2dmnXn65ABAPq8I5RKagfRz2ZSyZG4wP7s"
+ATLAS_TOKEN = "UIIPJEiey1LBU7M0xkkMfRgzW47ZCT42a0Dl0Sk0qFSUdXeNyvORtAWBGzAndQEE"

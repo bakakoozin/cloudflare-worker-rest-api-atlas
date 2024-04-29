@@ -1,8 +1,9 @@
 import * as Realm from 'realm-web';
 import * as utils from './utils';
+import { derbyNameController } from './ctrl/derbyname.ctrl';
 
 // The Worker's environment bindings. See `wrangler.toml` file.
-interface Bindings {
+export interface Bindings {
     // MongoDB Atlas Application ID
     ATLAS_APPID: string;
     ATLAS_TOKEN: string
@@ -15,7 +16,8 @@ type Document = globalThis.Realm.Services.MongoDB.Document;
 interface Todo extends Document {
     owner_id: string;
     done: boolean;
-    todo: string;
+    name: string;
+    number: string;
 }
 
 let App: Realm.App;
@@ -30,11 +32,14 @@ const worker: ExportedHandler<Bindings> = {
         const method = req.method;
         const path = url.pathname.replace(/[/]$/, '');
         const todoID = url.searchParams.get('id') || '';
-
+        const router: Record<string,Record<string ,(req:Request,env:Bindings,App:Realm.App) => Promise<Response>>> = { "/derbynames": derbyNameController }
+        const controller = router?.[path]?.[method]
+        return typeof controller === "function" ? await controller(req,env,App) : utils.toError("not found", 404)
+        /*return
         if (path !== '/api/todos') {
             return utils.toError(`Unknown '${path}' URL; try '/api/todos' instead.`, 404);
         }
-    
+
         const token = env.ATLAS_TOKEN;
         console.log(token)
         let client
@@ -69,12 +74,14 @@ const worker: ExportedHandler<Bindings> = {
 
             // POST /api/todos
             if (method === 'POST') {
-                const { todo } = await req.json();
+                const { name } = await req.json()
+                const { number } = await req.json()
                 return utils.reply(
                     await collection.insertOne({
                         owner_id: '',
                         done: false,
-                        todo: todo,
+                        name: name,
+                        number: number,
                     })
                 );
             }
@@ -106,7 +113,7 @@ const worker: ExportedHandler<Bindings> = {
         } catch (err) {
             const msg = (err as Error).message || 'Error with query.';
             return utils.toError(msg, 500);
-        }
+        }*/
     }
 }
 

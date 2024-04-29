@@ -4,7 +4,7 @@
 // // through wrangler, or we can potentially let users directly add them as a sort
 // // of "plugin" system.
 
-import worker from "C:\\Projets Dev\\derbynames\\cloudflare-worker-rest-api-atlas\\.wrangler\\tmp\\bundle-E5Pg9D\\middleware-insertion-facade.js";
+import worker from "C:\\Projets Dev\\derbynames\\cloudflare-worker-rest-api-atlas\\.wrangler\\tmp\\bundle-hC6TAx\\middleware-insertion-facade.js";
 import {
 	__facade_invoke__,
 	__facade_register__,
@@ -13,7 +13,7 @@ import {
 } from "C:\\Projets Dev\\derbynames\\cloudflare-worker-rest-api-atlas\\node_modules\\wrangler\\templates\\middleware\\common.ts";
 
 // We need to preserve all of the exports from the worker
-export * from "C:\\Projets Dev\\derbynames\\cloudflare-worker-rest-api-atlas\\.wrangler\\tmp\\bundle-E5Pg9D\\middleware-insertion-facade.js";
+export * from "C:\\Projets Dev\\derbynames\\cloudflare-worker-rest-api-atlas\\.wrangler\\tmp\\bundle-hC6TAx\\middleware-insertion-facade.js";
 
 class __Facade_ScheduledController__ implements ScheduledController {
 	#noRetry: ScheduledController["noRetry"];
