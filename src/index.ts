@@ -32,9 +32,9 @@ const worker: ExportedHandler<Bindings> = {
         const method = req.method;
         const path = url.pathname.replace(/[/]$/, '');
         const todoID = url.searchParams.get('id') || '';
-        const router: Record<string,Record<string ,(req:Request,env:Bindings,App:Realm.App) => Promise<Response>>> = { "/derbynames": derbyNameController }
+        const router: Record<string, Record<string, (req: Request, env: Bindings, App: Realm.App) => Promise<Response>>> = { "/derbynames": derbyNameController }
         const controller = router?.[path]?.[method]
-        return typeof controller === "function" ? await controller(req,env,App) : utils.toError("not found", 404)
+        return typeof controller === "function" ? await controller(req, env, App) : utils.toError("not found", 404)
         /*return
         if (path !== '/api/todos') {
             return utils.toError(`Unknown '${path}' URL; try '/api/todos' instead.`, 404);

@@ -1,6 +1,8 @@
 import type { Bindings } from ".";
 import * as Realm from 'realm-web';
 
+export const DB_NAME="cloudflare"
+
 const corsHeaders = {
     "Access-Control-Allow-Origin": "*",
     "Access-Control-Allow-Methods": "*",
